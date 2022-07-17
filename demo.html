@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box">
+    <button onclick="send()">点我发请求</button>
+    <div>返回值：<span class="res-val"></span></div>
+</div>
+</body>
+<script>
+    const AgentAxios =(params) => new Promise((resolve, reject) => {
+        window.postMessage(
+            {
+                type: "__AREX_EXTENSION_REQUEST__",
+                payload:params,
+            },
+            "*"
+        )
+        window.addEventListener("message",receiveMessage)
+        function receiveMessage(ev) {
+            if (ev.data.type==="__AREX_EXTENSION_RES__"){
+                window.removeEventListener('message', receiveMessage, false)
+                resolve(ev.data.res)
+            }
+        }
+    })
+    function send() {
+        AgentAxios({
+            url:'https://blackhole-m.m.jd.com/getinfo',
+            payload:{
+                method:'POST',
+                body:{
+                    name:'zt'
+                }
+            }
+        }).then(res=>{
+            console.log(res,'res')
+            document.querySelector('.res-val').innerHTML = JSON.stringify(res.data)
+        })
+    }
+</script>
+</html>
