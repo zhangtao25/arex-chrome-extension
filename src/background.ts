@@ -1,7 +1,7 @@
 import axios from 'axios'
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
-    const {url,config} = req.payload
-    axios(url,config).then(r=>{
+    const payload = req.payload
+    axios(payload).then(r=>{
         sendResponse(r)
     }).catch(err=>{
         sendResponse({msg:'err'})

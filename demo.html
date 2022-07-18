@@ -14,11 +14,11 @@
 </div>
 </body>
 <script>
-    const AgentAxios =(params) => new Promise((resolve, reject) => {
+    const AgentAxios =(payload) => new Promise((resolve, reject) => {
         window.postMessage(
             {
                 type: "__AREX_EXTENSION_REQUEST__",
-                payload:params,
+                payload:payload,
             },
             "*"
         )
@@ -33,12 +33,14 @@
     function send() {
         AgentAxios({
             url:'https://blackhole-m.m.jd.com/getinfo',
-            payload:{
-                method:'POST',
-                body:{
-                    name:'zt'
-                }
-            }
+            method:'GET',
+            data:{
+                name:'zt'
+            },
+            // method:'GET',
+            // params:{
+            //     name:'zt'
+            // }
         }).then(res=>{
             console.log(res,'res')
             document.querySelector('.res-val').innerHTML = JSON.stringify(res.data)
