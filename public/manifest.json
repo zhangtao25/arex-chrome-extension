@@ -28,7 +28,8 @@
       ],
       "js": [
         "content-scripts.js"
-      ]
+      ],
+      "run_at": "document_start"
     }
   ]
 }
