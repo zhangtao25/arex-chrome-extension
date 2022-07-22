@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from 'redaxios';
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     const payload = req.payload
-    axios(payload).then(r=>{
+    axios(payload).then(r=> {
         sendResponse(r)
     }).catch(err=>{
-        sendResponse({msg:'err'})
+        sendResponse(err)
     })
     return true
 })

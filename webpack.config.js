@@ -5,6 +5,7 @@ module.exports={
     entry: {
         'content-scripts': './src/content-scripts.ts',
         background: './src/background.ts',
+        'interceptor':'./src/interceptor.ts'
     },
     // 打包之后存放的位置
     output: {

@@ -1,7 +1,7 @@
 {
   "name": "Arex Chrome extension",
   "version": "1.0.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "icons": {
     "128": "logo-128.png"
   },
@@ -10,13 +10,15 @@
     "http://*/*",
     "https://*/*",
     "http://127.0.0.1:8002/*",
-    "http://127.0.0.1:6001/*",
-    "webRequest",
-    "webRequestBlocking"
+    "http://127.0.0.1:6001/*"
   ],
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
+  "web_accessible_resources": [{
+    "resources": ["interceptor.js"],
+    "matches": ["<all_urls>"]
+  }],
   "browser_action": {
     "default_title": "Arex",
     "default_icon": "logo-128.png"
