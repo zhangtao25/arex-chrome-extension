@@ -28,12 +28,6 @@ const setup = function () {
 };
 setup()
 
-
-
-
-
-
-
 window.addEventListener("message", (ev) => {
     if (ev.data.type === "__AREX_EXTENSION_REQUEST__"){
         chrome.runtime.sendMessage(ev.data, res => {
@@ -41,6 +35,7 @@ window.addEventListener("message", (ev) => {
                 {
                     type: "__AREX_EXTENSION_RES__",
                     res,
+                    tid:ev.data.tid
                 },
                 "*"
             )
