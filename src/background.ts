@@ -4,13 +4,17 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     axios(payload).then(r=> {
         sendResponse(r)
     }).catch(err=>{
-        sendResponse({
-            type:'error',
-            cause:err.cause,
-            message:err.message,
-            name:err.name,
-            stack:err.stack
-        })
+        if (err.message && err.name){
+            sendResponse({
+                type:'error',
+                cause:err.cause,
+                message:err.message,
+                name:err.name,
+                stack:err.stack
+            })
+        } else {
+            sendResponse(err)
+        }
     })
     return true
 })

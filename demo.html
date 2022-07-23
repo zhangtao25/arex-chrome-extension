@@ -54,6 +54,8 @@
         }).then(res=>{
             console.log(res,'res')
             document.querySelector('.res-val').innerHTML = JSON.stringify(res.data)
+        }).catch(err=>{
+            console.log(err,'err')
         })
     }
 </script>
