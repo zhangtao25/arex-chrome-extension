@@ -7,3 +7,4 @@ package-lock.json
 .idea
 temp
 pnpm-lock.yaml
+arex-chrome-extension.zip
