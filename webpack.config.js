@@ -25,5 +25,6 @@ module.exports={
     // 文件引用不需要后缀名
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
-    }
+    },
+    mode: "production"
 }

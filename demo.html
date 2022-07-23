@@ -15,18 +15,28 @@
 </body>
 <script>
     const AgentAxios =(payload) => new Promise((resolve, reject) => {
+        const tid = String(Math.random())
         window.postMessage(
             {
                 type: "__AREX_EXTENSION_REQUEST__",
                 payload:payload,
+                tid
             },
             "*"
         )
         window.addEventListener("message",receiveMessage)
         function receiveMessage(ev) {
-            if (ev.data.type==="__AREX_EXTENSION_RES__"){
+            if (ev.data.type==="__AREX_EXTENSION_RES__"  && ev.data.tid === tid){
                 window.removeEventListener('message', receiveMessage, false)
-                resolve(ev.data.res)
+                if (ev.data.res.type === 'error'){
+                    const err = new Error()
+                    err.message = ev.data.res.message
+                    err.name = ev.data.res.name
+                    err.stack = ev.data.res.stack
+                    reject(err)
+                } else {
+                    resolve(ev.data.res)
+                }
             }
         }
     })

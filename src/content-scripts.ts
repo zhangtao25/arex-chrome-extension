@@ -12,7 +12,9 @@ executeJS();
 
 window.addEventListener("message", (ev) => {
     if (ev.data.type === "__AREX_EXTENSION_REQUEST__"){
+        console.log(ev.data,'ev.data')
         chrome.runtime.sendMessage(ev.data, res => {
+            console.log(res)
             window.postMessage(
                 {
                     type: "__AREX_EXTENSION_RES__",
