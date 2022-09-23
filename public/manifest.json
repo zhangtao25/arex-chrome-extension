@@ -1,6 +1,6 @@
 {
   "name": "Arex Chrome Extension",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "manifest_version": 3,
   "icons": {
     "128": "logo-128.png"
@@ -10,7 +10,13 @@
     "http://*/*",
     "https://*/*",
     "http://127.0.0.1:8002/*",
-    "http://127.0.0.1:6001/*"
+    "http://127.0.0.1:6001/*",
+    "cookies"
+  ],
+  "host_permissions": [
+    "*://*/*",
+    "http://*/*",
+    "https://*/*"
   ],
   "background": {
     "service_worker": "background.js"
